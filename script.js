@@ -31,10 +31,12 @@ class Project {
 };
 
 class Task {
-    constructor(title, dueDate, notes) {
+    constructor(parentProject, title, dueDate, notes) {
+        this.parentProject = parentProject;
         this.title = title;
         this.dueDate = dueDate;
         this.notes = notes;
+        this.taskID = title + Math.random();
     }
 }
 
@@ -66,13 +68,23 @@ function setFocus(event) {
     //Update Project Title Display
     const projectTitle = document.querySelector(".project-title");
     projectTitle.textContent = projectList[selectedProject].name;
-    // Delete currently displayed tasks
+    buildTaskDisplay(projectID);
+
+}
+
+function deleteTask(event) {
+    console.log(event.target.parentNode.parentNode)
+    let projectIndex = projectList.findIndex(e => e.projectID == event.target.parentNode.parentNode.dataset.projectID);
+    let taskIndex = projectList[projectIndex].tasks.findIndex(e => e.taskID == event.target.parentNode.parentNode.dataset.taskID);
+    projectList[projectIndex].tasks.splice(taskIndex, 1);
+    buildTaskDisplay(event.target.parentNode.parentNode.dataset.projectID);
+}
+
+function buildTaskDisplay(projectID) {
     const taskList = document.querySelector(".project-tasks");
     while (taskList.firstChild) taskList.removeChild(taskList.firstChild);
-
-    // Loop through selected project to add tasks to display
-    projectList[selectedProject].tasks.forEach(e => {
-        //Select parent Div to place task into
+    let projectIndex = projectList.findIndex(e => e.projectID == projectID);
+    projectList[projectIndex].tasks.forEach(e => {
         const taskList = document.querySelector(".project-tasks")
         // Create elements
         const task = document.createElement("div");
@@ -81,9 +93,8 @@ function setFocus(event) {
         const taskDueDate = document.createElement("div");
         const taskNotes = document.createElement("p");
         const deleteTaskButton = document.createElement("button");
-        deleteTaskButton.addEventListener("click", deleteTask());
+        deleteTaskButton.addEventListener("click", deleteTask);
         deleteTaskButton.textContent = "X";
-
 
         taskTitle.classList.add("task-title");
         taskTitle.textContent = e.title;
@@ -92,29 +103,25 @@ function setFocus(event) {
         taskDueDate.textContent = e.dueDate;
         taskNotes.textContent = e.notes;
 
+        task.dataset.projectID = projectID;
+        task.dataset.taskID = e.taskID;
         task.append(taskTitle, taskDueDate, taskNotes);
         taskList.append(task);
-
-
-
-    });
-
+    })
 }
-
-function deleteTask(event) {
-    console.log("Will implement later")
-}
-
 
 
 
 //default projects
 let home = new Project("Home");
-let testTask = new Task("Clean Room", "3/1/2022", "This is an example notes");
 let work = new Project("Work");
+let testTask = new Task(home, "Clean Room", "3/1/2022", "This is an example notes");
+let testTask2 = new Task(work, "Organize Files", "3/1/2022", "This is an example notes");
+
 
 home.addTask(testTask);
-work.addTask(testTask);
+home.addTask(testTask2)
+work.addTask(testTask2);
 addProject(home);
 addProject(work);
 updateProjectDisplay();
