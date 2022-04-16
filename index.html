@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <title>Todo List</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2 class="title"><img class="logo" src="./static/clipboard2-check-fill.svg" alt=""> Todos</h3>
+                <ol class="sidebar-group">
+                    <li class="sidebar-item item-focus"><img src="./static/star-fill.svg" alt=""> Today</li>
+                    <li class="sidebar-item item-focus"><img src="./static/calendar3.svg" alt=""> Upcoming</li>
+
+                </ol>
+
+                <ol class="sidebar-projects">
+                    <li class="sidebar-projects-button"><button id="newprojectbutton">Add Project</button></li>
+                    <li id="addproject" class="add-project-form"><input type="text" name="projectname" id="projectname"
+                            placeholder="Project Name"> <button id="add-project-button">+</button><button
+                            id="cancelnewproject">X</button></li>
+
+                </ol>
+                <ol class="project-list">
+                    <li class="project-item item-focus">Test</li>
+
+                </ol>
+        </div>
+        <div class="content"></div>
+    </div>
+
+</body>
+
+
+
+
+</html>
