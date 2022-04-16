@@ -15,8 +15,11 @@
         <div class="sidebar">
             <h2 class="title"><img class="logo" src="./static/clipboard2-check-fill.svg" alt=""> Todos</h3>
                 <ol class="sidebar-group">
-                    <li class="sidebar-item item-focus"><img src="./static/star-fill.svg" alt=""> Today</li>
-                    <li class="sidebar-item item-focus"><img src="./static/calendar3.svg" alt=""> Upcoming</li>
+                    <li class="sidebar-item item-focus" onclick="setFocus(event)"><img src="./static/star-fill.svg"
+                            alt="">
+                        Today</li>
+                    <li class="sidebar-item item-focus" onclick="setFocus(event)"><img src="./static/calendar3.svg"
+                            alt=""> Upcoming</li>
 
                 </ol>
 
@@ -32,7 +35,26 @@
 
                 </ol>
         </div>
-        <div class="content"></div>
+        <div class="content">
+            <div class="project-title">
+
+            </div>
+            <div class="project-tasks">
+                <div class="task">
+                    <div class="task-title">Clean Your Room
+                        <Button>Delete Task</Button>
+                    </div>
+                    <div>Due Date: 3/1/2021</div>
+                    <div>Notes:</div>
+                    <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores perspiciatis accusamus hic
+                        quasi maiores consequuntur fugit veniam nisi, unde sit molestiae enim adipisci autem voluptatum
+                        accusantium ipsa corporis rem possimus.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
     </div>
 
 </body>
